@@ -1,9 +1,7 @@
 package jm.task.core.jdbc.dao;
 
-import jm.task.core.jdbc.Main;
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,15 +17,13 @@ public class UserDaoJDBCImpl implements UserDao {
     private final String REMOVE_USER = "DELETE FROM user WHERE id=?";
     private final String DROP_TABlE = "DROP TABLE IF EXISTS user";
     private final String CLEAN_TABLE = "DELETE FROM user";
-    private Util util = new Util("jdbc:mysql://localhost:3306/userdb?useSSL=false", "root", "123321");
 
     public UserDaoJDBCImpl() {
 
     }
 
     public void createUsersTable() {
-        ;
-        try (Connection connection = util.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(CREATE_TABLE)) {
+        try (Connection connection = Util.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(CREATE_TABLE)) {
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -35,7 +31,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void dropUsersTable() {
-        try (Connection connection = util.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(DROP_TABlE)) {
+        try (Connection connection = Util.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(DROP_TABlE)) {
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -43,7 +39,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void saveUser(String name, String lastName, byte age) {
-        try (Connection connection = util.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(SEVE_USER)){
+        try (Connection connection = Util.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(SEVE_USER)){
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, lastName);
             preparedStatement.setInt(3, age);
@@ -55,7 +51,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void removeUserById(long id) {
-        try (Connection connection = util.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(REMOVE_USER)) {
+        try (Connection connection = Util.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(REMOVE_USER)) {
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
 
@@ -67,7 +63,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public List<User> getAllUsers() {
         List<User> list = new ArrayList<>();
         ResultSet resultSet = null;
-        try (Connection connection = util.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL)) {
+        try (Connection connection = Util.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL)) {
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 User user = new User();
@@ -92,7 +88,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void cleanUsersTable() {
-        try (Connection connection = util.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(CLEAN_TABLE)) {
+        try (Connection connection = Util.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(CLEAN_TABLE)) {
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
