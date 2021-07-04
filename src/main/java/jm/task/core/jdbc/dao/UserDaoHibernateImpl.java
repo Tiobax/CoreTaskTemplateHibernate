@@ -1,6 +1,8 @@
 package jm.task.core.jdbc.dao;
 
+import com.mysql.cj.Session;
 import jm.task.core.jdbc.model.User;
+import jm.task.core.jdbc.util.Util;
 
 import java.util.List;
 
@@ -12,7 +14,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void createUsersTable() {
-
+        Session session = (Session) Util.getSessionFactory().openSession();
     }
 
     @Override
