@@ -14,33 +14,36 @@ public class Main {
         UserService userService = new UserServiceImpl();
 
         //Создание таблицы
-//        userService.createUsersTable();
+        userService.createUsersTable();
 
         //Добавление 4 пользователей в таблицу
         userService.saveUser("Евгений", "Буко", (byte) 34);
         userService.saveUser("Генадий", "Агафьев", (byte) 44);
         userService.saveUser("Виталий", "Дубнов", (byte) 56);
-        userService.saveUser("Александр", "Пушкин", (byte) 144);
-//
-//        //Получение всех пользователей из таблицы
-//        List<User> list = userService.getAllUsers();
-//        System.out.println("Все добавленные пользователи: " + list);
-//
-//        //Удаление пользователя с индексом 2 из таблицы
-//        userService.removeUserById(2);
-//
-//        //Получение всех пользователей из таблицы
-//        list = userService.getAllUsers();
-//        System.out.println("Все пользователи после удаления по индексу: " + list);
-//
-//        //Очистка таблицы
-//        userService.cleanUsersTable();
-//
-//        //Получение всех пользователей из таблицы
-//        list = userService.getAllUsers();
-//        System.out.println("После очистки таблицы: " + list);
-//
-//        //Удаление таблицы
-//        userService.dropUsersTable();
+        userService.saveUser("Александр", "Пушкин", (byte) 104);
+
+        //Получение всех пользователей из таблицы
+        List<User> list = userService.getAllUsers();
+        System.out.println(list);
+
+        //Удаление пользователя с индексом 2 из таблицы
+        userService.removeUserById(2);
+
+        //Получение всех пользователей из таблицы
+        list = userService.getAllUsers();
+        System.out.println("Все пользователи после удаления по индексу: " + list);
+
+        //Очистка таблицы
+        userService.cleanUsersTable();
+
+        //Получение всех пользователей из таблицы
+        list = userService.getAllUsers();
+        System.out.println("После очистки таблицы: " + list);
+
+        //Удаление таблицы
+        userService.dropUsersTable();
+
+        //Закрываем SessionFactory
+        Util.closeSessionFactory();
     }
 }
