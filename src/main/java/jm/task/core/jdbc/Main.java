@@ -31,7 +31,7 @@ public class Main {
 
         //Получение всех пользователей из таблицы
         list = userService.getAllUsers();
-        System.out.println("Все пользователи после удаления по индексу: " + list);
+        System.out.println(list);
 
         //Очистка таблицы
         userService.cleanUsersTable();
