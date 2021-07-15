@@ -43,7 +43,5 @@ public class Main {
         //Удаление таблицы
         userService.dropUsersTable();
 
-        //Закрываем SessionFactory
-        Util.closeSessionFactory();
     }
 }
